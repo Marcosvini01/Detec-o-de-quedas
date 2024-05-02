@@ -9,3 +9,8 @@ A finalidade principal é garantir condições ideais de conforto e segurança p
 
 ![Aplicações Machine Learning](https://viso.ai/wp-content/uploads/2022/07/smart-city-scene-computer-vision-deep-learning-networks.png)
 
+O MediaPipe é uma estrutura de código-fonte aberto desenvolvido pelo Google, que permite o desenvolvimento de aplicativos de percepção de mídia, como rastreamento de mãos, detecção de objetos e reconhecimento facial. Ele fornece ferramentas e componentes prontos para uso, bem como uma arquitetura flexível que permite aos desenvolvedores criar e treinar modelos adaptados às suas necessidades específicas.
+O recurso exclusivo do MediaPipe é a capacidade de processar fluxos de mídia em tempo real, tornando-o ideal para aplicativos de baixa latência, como realidade aumentada, jogos e interfaces homem-computador.
+
+![MediaPipe](https://www.researchgate.net/profile/Jungpil-Shin/publication/362351225/figure/fig3/AS:1183521695645696@1659184969422/Mediapipe-detects-33-nodes-of-the-human-pose.ppm)
+
