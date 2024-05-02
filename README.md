@@ -23,8 +23,11 @@ MediaPipe emprega uma combinação de visão computacional e aprendizado de máq
 Referencias:
 
 https://aws.amazon.com/pt/what-is/iot/
+
 https://blog.eletrogate.com/sistema-anti-incendia-sensor-de-gases-inflamaveis-com-arduino/
+
 https://developers.google.com/mediapipe/solutions/vision/pose_landmarker
+
 https://viso.ai/deep-learning/yolov7-guide/
 
 
