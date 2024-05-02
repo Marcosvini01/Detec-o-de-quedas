@@ -1,0 +1,110 @@
+#include <DHT.h>
+#include <WiFi.h>
+#include "ThingSpeak.h"
+#include <HTTPClient.h>
+#include <UrlEncode.h>
+
+const char* WIFI_NAME = "Wokwi-GUEST";
+const char* WIFI_PASSWORD = "";
+
+String phoneNumber = "Number";
+String apiKey = "API";
+
+const int myChannelNumber =2491296 ;
+const char* myApiKey = "MIO9O6PXSXM1KGTH";
+const char* server = "api.thingspeak.com";
+
+#define DHTPIN 2     // define o pino do sensor
+#define DHTTYPE DHT22   // define o tipo de sensor
+#define MQ2 34
+#define MQ2D 35
+int sensorValue = 0;
+boolean state = false;
+
+
+
+DHT dht(DHTPIN, DHTTYPE);   // cria um objeto DHT
+WiFiClient client;
+
+void sendMessage(String message) {
+
+  // Data to send with HTTP POST
+  String url = "https://api.callmebot.com/whatsapp.php?phone=" + phoneNumber + "&apikey=" + apiKey + "&text=" + urlEncode(message);
+  HTTPClient http;
+  http.begin(url);
+
+  // Specify content-type header
+  http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  // Send HTTP POST request
+  int httpResponseCode = http.POST(url);
+  if (httpResponseCode == 200) {
+    Serial.print("Mensagem enviada com sucesso");
+  } else {
+    Serial.println("Erro no envio da mensagem");
+    Serial.print("HTTP response code: ");
+    Serial.println(httpResponseCode);
+  }
+
+  // Free resources
+  http.end();
+}
+
+void setup() {
+  Serial.begin(9600);   // inicializa a comunicação serial
+  dht.begin() ;   // inicializa o sensor DHT
+  
+  WiFi.begin(WIFI_NAME, WIFI_PASSWORD);
+  while (WiFi.status() != WL_CONNECTED){
+    delay(1000);
+    Serial.println("Wifi not connected");
+  }
+  Serial.println("Wifi connected !");
+  Serial.println("Local IP: " + String(WiFi.localIP()));
+  WiFi.mode(WIFI_STA);
+  ThingSpeak.begin(client);
+  pinMode(MQ2, INPUT);
+  pinMode(MQ2D, INPUT);
+}
+
+
+void loop() {
+  delay(2000);   // aguarda 2 segundos
+
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+
+
+  int co2Value = analogRead(MQ2);
+  co2Value = map(co2Value, 0 , 4095, 0, 100); //conversão dos valores para irem de 0 a 100 se passar de 43 ja é preocupante.
+  float co2D = digitalRead(MQ2D);
+  //ThingSpeak.setField(1, co2Value);
+  Serial.println(co2D);
+  Serial.print("Gás: ");
+  Serial.println(co2Value);
+
+  // imprime os valores de temperatura e umidade na porta serial
+  Serial.print("Temperatura: ");
+  Serial.print(temperature);
+  Serial.print(" °C ");
+  Serial.print("Umidade: ");
+  Serial.print(humidity);
+  Serial.println(" %");
+
+
+
+
+
+
+  ThingSpeak.setField(1, temperature);
+  ThingSpeak.setField(2, humidity);
+  ThingSpeak.setField(3, co2Value);
+  ThingSpeak.writeFields(myChannelNumber,myApiKey);
+  
+  if (co2Value >= 21){
+
+      sendMessage("O nivel de gás esta alto, por favor checar" );
+      
+  }
+
+}
