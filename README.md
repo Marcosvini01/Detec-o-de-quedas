@@ -1,4 +1,4 @@
-# Detecção de quedas
+# Monitoramento Inteligente em Ambientes Hospitalares: utilização de uma plataforma de baixo custo para garantir condições ideais de conforto e segurança, no contexto da internet das coisas.
 
 A utilização de tecnologias para monitoramento inteligente em ambientes hospitalares é uma tendência crescente na área da saúde. Com a evolução da Internet das Coisas (IoT), sensores e dispositivos conectados podem ser usados para coletar dados e informações precisas sobre as condições do ambiente hospitalar, permitindo um controle mais efetivo e eficiente dos recursos disponíveis. O uso de plataformas de monitoramento inteligente, como o Arduino e sensores, permite criar soluções personalizadas e de baixo custo para monitorar a qualidade do ar, temperatura e umidade, garantindo que pacientes e profissionais de saúde estejam sempre em um ambiente seguro e confortável. 
 
