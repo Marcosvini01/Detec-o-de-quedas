@@ -20,4 +20,9 @@ MediaPipe emprega uma combinação de visão computacional e aprendizado de máq
 ![MediaPipe](https://editor.analyticsvidhya.com/uploads/77738pose_tracking_full_body_landmarks.png)
 
 
+Referencias:
+
+https://blog.eletrogate.com/sistema-anti-incendia-sensor-de-gases-inflamaveis-com-arduino/
+
+
 
